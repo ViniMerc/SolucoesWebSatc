@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Aula Chat</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+    </head>
+    <body>
+        <div id="page">
+            <div id="fundo">
+                <header></header>
+                <div id="titulo">
+                    <h1>Atendimento Online</h1>
+                </div>
+                <div class="container">
+                    <ul id="Chat">
+                      <li class="empty">Nenhuma mensagem</li>
+                    </ul>
+                    <form
+                      id="formAdd"
+                      action="lista.html"
+                      method="post"
+                      style="border-top: 1px solid #ccc; margin-top: 26px; padding-top: 16px;"
+                      autocomplete="off"
+                    >
+                      <fieldset>
+                        <div id="enviar" class="input">                    
+                            <input type="text" name="texto" class="form-control" 
+                            id="item" placeholder="Digite sua mensagem" autocomplete="off"> 
+                            <button type="submit" class="btn btn-primary" >
+                            <span class="glyphicon glyphicon-plus"></span>
+                                Enviar
+                            </button>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+            </div>  
+        </div>
+        <script type="text/javascript">
+            function criaItem(item, classe) {
+              const nLI = document.createElement("li");
+              if (!!classe) {
+                nLI.className = classe;
+              }
+              const nStrong = document.createElement("strong");
+              nStrong.innerText = item;
+              nLI.appendChild(nStrong);
+              const Chat = document.querySelector("#Chat");
+              Chat.appendChild(nLI);
+              const empty = document.querySelector("#Chat .empty");
+              empty.style.display = "none";
+            }
+            const formAdd = document.getElementById("formAdd");
+            formAdd.addEventListener("submit", function(event) {
+              event.preventDefault();
+              const itemInput = document.getElementById("item");
+              criaItem(itemInput.value); 
+              criaItem("Aguarde um minuto...","resposta");         
+              itemInput.value = "";   
+              itemInput.focus();
+            });
+          </script>
+    </body>
+</html>
